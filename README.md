@@ -5,7 +5,7 @@ A simple college admin dashboard.
 
 ### MVC Structure:
 - `/Models` - Contains models for the students, teachers, courses, enrollments and subjects.
-- `/Controllers` - Controllers for the REST API that feeds the client-side.
+- `/Controllers` - Controllers for the REST API that feeds the client-side application.
 - `/Views` - Contains a view Home for the single page application and a shared Layout.
 
 ### Static files:
