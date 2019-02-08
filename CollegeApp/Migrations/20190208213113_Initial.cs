@@ -22,20 +22,6 @@ namespace CollegeApp.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Student",
-                columns: table => new
-                {
-                    StudentID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(maxLength: 100, nullable: false),
-                    Birthday = table.Column<DateTime>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Student", x => x.StudentID);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Teacher",
                 columns: table => new
                 {
@@ -48,6 +34,27 @@ namespace CollegeApp.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Teacher", x => x.TeacherID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Student",
+                columns: table => new
+                {
+                    StudentID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(maxLength: 100, nullable: false),
+                    CourseID = table.Column<int>(nullable: false),
+                    Birthday = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Student", x => x.StudentID);
+                    table.ForeignKey(
+                        name: "FK_Student_Course_CourseID",
+                        column: x => x.CourseID,
+                        principalTable: "Course",
+                        principalColumn: "CourseID",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -113,6 +120,11 @@ namespace CollegeApp.Migrations
                 name: "IX_Enrollment_SubjectID",
                 table: "Enrollment",
                 column: "SubjectID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Student_CourseID",
+                table: "Student",
+                column: "CourseID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Subject_CourseID",

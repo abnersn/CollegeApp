@@ -29,15 +29,15 @@ namespace CollegeApp.Models
                 {
                     var students = new List<Student>
                     {
-                        new Student {Name="Honório Jaguariúna", Birthday=DateTime.Parse("1999-10-03"), CourseID=6},
-                        new Student {Name="Lúcia Abranches", Birthday=DateTime.Parse("2000-07-23"), CourseID=7},
-                        new Student {Name="Simão Câmara", Birthday=DateTime.Parse("1998-03-15"), CourseID=6},
-                        new Student {Name="Vânia Cabral", Birthday=DateTime.Parse("2001-04-24"), CourseID=6},
-                        new Student {Name="Guadalupe Viana", Birthday=DateTime.Parse("1996-03-22"), CourseID=7},
-                        new Student {Name="Dália Beserril", Birthday=DateTime.Parse("1999-02-12"), CourseID=6},
-                        new Student {Name="Bernardo Hollanda", Birthday=DateTime.Parse("1998-08-06"), CourseID=7},
-                        new Student {Name="Timóteo Viveros", Birthday=DateTime.Parse("2000-11-12"), CourseID=6},
-                        new Student {Name="Zubaida Mourinho", Birthday=DateTime.Parse("2001-12-30"), CourseID=6},
+                        new Student {Name="Honório Jaguariúna", Birthday=DateTime.Parse("1999-10-03"), CourseID=1},
+                        new Student {Name="Lúcia Abranches", Birthday=DateTime.Parse("2000-07-23"), CourseID=2},
+                        new Student {Name="Simão Câmara", Birthday=DateTime.Parse("1998-03-15"), CourseID=1},
+                        new Student {Name="Vânia Cabral", Birthday=DateTime.Parse("2001-04-24"), CourseID=1},
+                        new Student {Name="Guadalupe Viana", Birthday=DateTime.Parse("1996-03-22"), CourseID=2},
+                        new Student {Name="Dália Beserril", Birthday=DateTime.Parse("1999-02-12"), CourseID=2},
+                        new Student {Name="Bernardo Hollanda", Birthday=DateTime.Parse("1998-08-06"), CourseID=2},
+                        new Student {Name="Timóteo Viveros", Birthday=DateTime.Parse("2000-11-12"), CourseID=1},
+                        new Student {Name="Zubaida Mourinho", Birthday=DateTime.Parse("2001-12-30"), CourseID=1},
                     };
                     students.ForEach(s => context.Student.Add(s));
                     context.SaveChanges();
@@ -54,6 +54,20 @@ namespace CollegeApp.Models
                         new Teacher{Name="Felisbela Pires", Birthday=DateTime.Parse("1982-10-20"), Salary=8030}
                     };
                     teachers.ForEach(t => context.Teacher.Add(t));
+                    context.SaveChanges();
+                }
+
+                if (!context.Subject.Any())
+                {
+                    var subjects = new List<Subject>
+                    {
+                        new Subject{Name="Parnasianismo", TeacherID=1},
+                        new Subject{Name="Gravitação", TeacherID=2},
+                        new Subject{Name="Trovadorismo", TeacherID=3},
+                        new Subject{Name="Mecânica", TeacherID=4},
+                        new Subject{Name="Romantismo", TeacherID=5}
+                    };
+                    subjects.ForEach(s => context.Subject.Add(s));
                     context.SaveChanges();
                 }
             }

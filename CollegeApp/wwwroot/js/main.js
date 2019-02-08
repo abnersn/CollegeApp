@@ -149,7 +149,6 @@ app.controller("StudentController", function ($scope, $http, Student, Enrollment
     }
 });
 
-
 app.controller("SubjectController", function ($scope, $http, Subject, Enrollment) {
     $http.get("/api/Teachers").then(function (response) {
         $scope.teachers = response.data;
@@ -230,7 +229,6 @@ app.controller("SubjectController", function ($scope, $http, Subject, Enrollment
         });
     }
 });
-
 
 app.controller("CoursesController", function ($scope, $http, Course) {
     $http.get("/api/Subjects").then(function (response) {
@@ -341,4 +339,16 @@ app.controller("TeacherController", function ($scope, $http, Teacher) {
             refresh();
         });
     }
+});
+
+app.controller("HomeController", function ($scope, $http) {
+    $http.get("/api/Courses").then(function (response) {
+        $scope.courses = response.data;
+    });
+    $http.get("/api/Teachers").then(function (response) {
+        $scope.teachers = response.data;
+    });
+    $http.get("/api/Students").then(function (response) {
+        $scope.students = response.data;
+    });
 });
