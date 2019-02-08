@@ -1,8 +1,8 @@
 <div ng-controller="HomeController" class="content">
     <div class="row">
-        <div class="col-md-6 col-lg-6 col-xl-3">
+        <div class="col-md-4">
             <div class="media widget-media p-4 bg-white border">
-                <div class="icon rounded-circle bg-warning mr-4">
+                <div class="icon rounded-circle bg-success mr-4">
                     <i class="mdi mdi-account-multiple text-white "></i>
                 </div>
                 <div class="media-body align-self-center">
@@ -10,15 +10,19 @@
                     <p>Teachers</p>
                 </div>
             </div>
-            <div class="media widget-media p-4 bg-white border">
-                <div class="icon rounded-circle bg-warning mr-4">
-                    <i class="mdi mdi-emoticon-happy text-white "></i>
-                </div>
-                <div class="media-body align-self-center">
-                    <h4 class="text-primary mb-2">{{students.length}}</h4>
-                    <p>Students</p>
+        </div>
+        <div class="col-md-4">
+                <div class="media widget-media p-4 bg-white border">
+                    <div class="icon rounded-circle bg-danger mr-4">
+                        <i class="mdi mdi-emoticon-happy text-white "></i>
+                    </div>
+                    <div class="media-body align-self-center">
+                        <h4 class="text-primary mb-2">{{students.length}}</h4>
+                        <p>Students</p>
+                    </div>
                 </div>
             </div>
+        <div class="col-md-4">
             <div class="media widget-media p-4 bg-white border">
                 <div class="icon rounded-circle bg-warning mr-4">
                     <i class="mdi mdi-bank text-white "></i>
@@ -28,6 +32,7 @@
                     <p>Courses</p>
                 </div>
             </div>
+        </div>
         </div>
     </div>
 </div>
