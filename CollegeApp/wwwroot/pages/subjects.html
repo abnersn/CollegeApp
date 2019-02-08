@@ -1,0 +1,126 @@
+<div ng-controller="SubjectController" class="content">
+
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="card card-default">
+                <div class="card-header card-header-border-bottom">
+                    <h2>New Subject</h2>
+                </div>
+                <div class="card-body">
+                    <form ng-submit="register(newSubject)">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input required ng-model="newSubject.name" type="text" class="form-control mb-2" id="name" placeholder="Enter Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="teacher">Teacher</label>
+                            <select required ng-model="newSubject.teacherID" class="form-control" id="teacher">
+                                <option value="" disabled selected>Pick a Teacher</option>
+                                <option ng-repeat="teacher in teachers" value="{{teacher.teacherID}}">{{teacher.name}}</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-default"><i class="mdi mdi-plus mr-1"></i>Register</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card card-default" data-scroll-height="457">
+                <div class="card-header card-header-border-bottom">
+                    <h2>Subjects List</h2>
+                </div>
+                <div class="card-body slim-scroll">
+                    <table class="table">
+                        <tbody>
+                            <tr ng-repeat="subject in subjects">
+                                <td>
+                                    <div class="media">
+                                        <div class="media-body align-self-center">
+                                            <h5 class="mt-0 text-dark font-weight-medium">{{subject.name}}</h5>
+                                            <p>{{subject.teacher.name}}</p>
+                                            <p ng-show="subject.average"><small>Average grade: {{subject.average}}</small></p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="text-dark d-none d-md-block">{{subject.enrollments.length}} students</td>
+                                <td width="100px">
+                                    <button class="btn btn-sm btn-danger" ng-click="delete(subject.subjectID)"><i class=" mdi mdi-trash-can"></i></button>
+                                    <button class="btn btn-sm btn-primary" ng-click="details(subject.subjectID)"><i class=" mdi mdi-eye"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" ng-show="detailsSubject">
+        <div class="col-lg-6">
+            <div class="card card-default">
+                <div class="card-header card-header-border-bottom">
+                    <h2>Edit Subject</h2>
+                </div>
+                <div class="card-body">
+                    <form ng-submit="update(detailsSubject)">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input required ng-model="detailsSubject.name" type="text" class="form-control mb-2" id="name" placeholder="Enter Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="teacher">Teacher</label>
+                            <select required ng-model="detailsSubject.teacherID" class="form-control" id="teacher">
+                                <option value="" disabled selected>Pick a Teacher</option>
+                                <option ng-repeat="teacher in teachers" value="{{teacher.teacherID}}">{{teacher.name}}</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-default"><i class="mdi mdi-content-save mr-1"></i>Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card card-default" data-scroll-height="457">
+                <div class="card-header card-header-border-bottom">
+                    <h2>Enrollments</h2>
+                </div>
+                <div class="card-body slim-scroll">
+                    <div>
+                        <form class="mb-4" ng-submit="registerEnrollment(newEnrollment)">
+                            <div class="form-row">
+                                <div class="col-5">
+                                    <select required ng-model="newEnrollment.studentID" class="form-control mr-2">
+                                        <option value="" disabled selected>Student</option>
+                                        <option ng-repeat="student in students" value="{{student.studentID}}">{{student.name}}</option>
+                                    </select>
+                                </div>
+                                <div class="col-4">
+                                    <input class="form-control mr-2" ng-model="newEnrollment.grade" type="number" min="0" max="10" step="0.1" placeholder="Grade" />
+                                </div>
+                                <div class="col-3">
+                                    <button type="submit" class="btn btn-primary btn-default">Enroll</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Student</th>
+                                <th scope="col">Grade</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="enrollment in detailsSubject.enrollments">
+                                <td>{{getStudent(enrollment.studentID).name}}</td>
+                                <td>{{enrollment.grade}}</td>
+                                <td width="50px">
+                                    <button class="btn btn-sm btn-danger" ng-click="deleteEnrollment(enrollment.enrollmentID)"><i class=" mdi mdi-trash-can"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

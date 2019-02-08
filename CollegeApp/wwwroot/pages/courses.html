@@ -1,0 +1,66 @@
+<div ng-controller="CoursesController" class="content">
+    <div class="row">
+
+        <div class="col-lg-6">
+            <div class="row">
+                <div class="card card-default col-lg-12">
+                    <div class="card-header card-header-border-bottom">
+                        <h2>New Course</h2>
+                    </div>
+                    <div class="card-body">
+                        <form ng-submit="register(newCourse)">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input required ng-model="newCourse.name" type="text" class="form-control mb-2" id="name" placeholder="Enter Name">
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-default"><i class="mdi mdi-plus mr-1"></i>Register</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="row" ng-show="detailsCourse">
+                <div class="card card-default col-md-12">
+                    <div class="card-header card-header-border-bottom">
+                        <h2>Edit Course</h2>
+                    </div>
+                    <div class="card-body">
+                        <form ng-submit="update(detailsCourse)">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input required ng-model="detailsCourse.name" type="text" class="form-control mb-2" id="name" placeholder="Enter Name">
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-default"><i class="mdi mdi-content-save mr-1"></i>Save</button>
+                        </form>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="col-lg-6" >
+            <div class="card card-default col-lg-12" data-scroll-height="560">
+                <div class="card-header card-header-border-bottom">
+                    <h2>Courses List</h2>
+                </div>
+                <div class="card-body slim-scroll">
+                    <table class="table">
+                        <tbody>
+                            <tr ng-repeat="course in courses">
+                                <td>
+                                    <div class="media">
+                                        <div class="media-body align-self-center">
+                                            <h5 class="mt-0 text-dark font-weight-medium">{{course.name}}</h5>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td width="100px">
+                                    <button class="btn btn-sm btn-danger" ng-click="delete(course.courseID)"><i class=" mdi mdi-trash-can"></i></button>
+                                    <button class="btn btn-sm btn-primary" ng-click="details(course)"><i class=" mdi mdi-eye"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

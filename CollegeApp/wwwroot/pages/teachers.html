@@ -1,0 +1,100 @@
+<div ng-controller="TeacherController" class="content">
+
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="card card-default">
+                <div class="card-header card-header-border-bottom">
+                    <h2>New Teacher</h2>
+                </div>
+                <div class="card-body">
+                    <form ng-submit="register(newTeacher)">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input required ng-model="newTeacher.name" type="text" class="form-control mb-2" id="name" placeholder="Enter Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="birthday">Birthday</label>
+                            <input required ng-model="newTeacher.birthday" id="birthday" name="birthday" type="date" class="form-control mb-2" data-mask="00/00/0000" placeholder="" aria-label="">
+                        </div>
+                        <div class="form-group">
+                            <label for="salary">Salary</label>
+                            <input class="form-control mb-2"  required ng-model="newTeacher.salary" id="salary" type="number" min="0" placeholder="" aria-label="">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-default"><i class="mdi mdi-plus mr-1"></i>Register</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card card-default" data-scroll-height="457">
+                <div class="card-header card-header-border-bottom">
+                    <h2>Teachers List</h2>
+                </div>
+                <div class="card-body slim-scroll">
+                    <table class="table">
+                        <tbody>
+                            <tr ng-repeat="teacher in teachers">
+                                <td>
+                                    <div class="media">
+                                        <div class="media-body align-self-center">
+                                            <h5 class="mt-0 text-dark font-weight-medium">{{teacher.name}}</h5>
+                                            <p>{{teacher.salary | currency: "$ "}}</p>
+                                            <p><small>ID: {{teacher.teacherID}}</small></p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="text-dark d-none d-md-block">{{teacher.birthday | date:'dd-MM-yyyy'}}</td>
+                                <td width="100px">
+                                    <button class="btn btn-sm btn-danger" ng-click="delete(teacher.teacherID)"><i class=" mdi mdi-trash-can"></i></button>
+                                    <button class="btn btn-sm btn-primary" ng-click="details(teacher)"><i class=" mdi mdi-eye"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" ng-show="detailsTeacher">
+        <div class="col-lg-6">
+            <div class="card card-default">
+                <div class="card-header card-header-border-bottom">
+                    <h2>Edit Teacher</h2>
+                </div>
+                <div class="card-body">
+                    <form ng-submit="update(detailsTeacher)">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input required ng-model="detailsTeacher.name" type="text" class="form-control mb-2" id="name" placeholder="Enter Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="salary">Salary</label>
+                            <input class="form-control mb-2" required ng-model="detailsTeacher.salary" id="salary" type="number" min="0" placeholder="" aria-label="">
+                        </div>
+                        <div class="form-group">
+                            <label for="birthday">Birthday</label>
+                            <input required ng-model="detailsTeacher.birthday" id="birthday" name="birthday" type="date" class="form-control mb-2" data-mask="00/00/0000" placeholder="" aria-label="">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-default"><i class="mdi mdi-content-save mr-1"></i>Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card card-default" data-scroll-height="457">
+                <div class="card-header card-header-border-bottom">
+                    <h2>Subjects</h2>
+                </div>
+                <div class="card-body slim-scroll">
+                    <table class="table">
+                        <tbody>
+                            <tr ng-repeat="subject in detailsTeacher.subjects">
+                                <td>{{subject.name}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
